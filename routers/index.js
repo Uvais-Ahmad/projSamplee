@@ -12,7 +12,7 @@ router.get('/',homeController.home);
 
 //If  '/users' request comes then this will fireUp .
 //This index file work as a root of all router files.
-// router.use('/users' , require('./users'));
+router.use('/users' , require('./users'));
 
 //for any further routes   , access from here
 // router.use('/routerName', require('routerFile'));
