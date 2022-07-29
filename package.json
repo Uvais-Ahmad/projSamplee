@@ -1,0 +1,14 @@
+{
+  "name": "projsamplee",
+  "version": "1.0.0",
+  "description": "This is the Sample Proj here we structure whole proj how to make and build it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "UVAIS Cninja",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
