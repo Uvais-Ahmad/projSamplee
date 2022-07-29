@@ -11,6 +11,8 @@ app.set('views','./views');
 
 //Here we are using that module only Now create "Layout.ejs" file and make a layout
 //This  "layout.ejs" file not to be render. All Files set in Layout file then render auto by the express 
+
+app.use(express.static('assets'));
 app.use(ExpressLayout);
 app.use('/',require('./routers'));
 
