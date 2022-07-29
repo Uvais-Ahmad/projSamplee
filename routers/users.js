@@ -8,4 +8,6 @@ router.get('/profile',userController.profile);
 
 router.get('/posts',userController.posts);
 
+
+
 module.exports = router;
