@@ -8,4 +8,10 @@ router.get('/profile',userController.profile);
 
 router.get('/posts',userController.posts);
 
+//This is router to render sign up page
+router.get('/sign-up',userController.signUp);
+
+//This is router to render sign in page
+router.get('/sign-in',userController.signIn);
+
 module.exports = router;

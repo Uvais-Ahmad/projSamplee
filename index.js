@@ -6,7 +6,7 @@ const db = require('./config/mongoose');
 
 const User = require('./models/users');
 
-//First install Thsi module and add it
+//First install Thsi module and add it layout
 const ExpressLayout = require('express-ejs-layouts');
 
 
@@ -14,14 +14,15 @@ app.set('view engine', 'ejs');
 app.set('views','./views');
 
 //the subpages css is load at top of page now its append on right place
-app.set('layout extractStyles',true);
-app.set('layout extractScripts',true);
+// app.set('layout extractStyles',true);
+// app.set('layout extractScripts',true);
 
 //Here we are using that module only Now create "Layout.ejs" file and make a layout
 //This  "layout.ejs" file not to be render. All Files set in Layout file then render auto by the express 
 
 app.use(express.static('assets'));
-app.use(ExpressLayout);
+//This middleware used to launch the Layout System
+// app.use(ExpressLayout);
 app.use('/',require('./routers'));
 
 
