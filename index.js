@@ -2,6 +2,9 @@ const express = require('express');
 const port = 8000;
 const app = express();
 const db = require('./config/mongoose');
+//This is Schema for storing Email And Password
+
+const User = require('./models/users');
 
 //First install Thsi module and add it
 const ExpressLayout = require('express-ejs-layouts');
