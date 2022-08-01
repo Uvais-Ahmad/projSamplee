@@ -5,18 +5,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="/css/user_sign_in.css">
 	<link rel="stylesheet" type="text/css" href="/css/user_sign_up.css">
-	<title>Document</title>
+	<title><%= title %></title>
 </head>
 <body>
 
 	
 		
-	<form class="signUp">
+	<form class="signUp" method="POST" action="/users/create">
 		<h1 id="head">Sign Up</h1>
 		<input type="email" id="email" name="email" placeholder="xyz@example.com">
 		<input type="password" id="pass" name="pass" placeholder="Password">
-		<input type="text" name="name" id="name"
-		placeholder="name">
+		<input type="text" name="name" id="name" placeholder="name">
 		<button type="submit">Register</button>
 	</form>
 	

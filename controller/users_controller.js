@@ -20,3 +20,7 @@ module.exports.signUp = function(req , res ){
         title:'SignUp'
     });
 }
+
+module.exports.create = function(req , res ){
+    console.log(req.body);
+}
