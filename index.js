@@ -8,6 +8,11 @@ const User = require('./models/users');
 //First install Thsi module and add it layout
 const ExpressLayout = require('express-ejs-layouts');
 
+//This module use to add cookies in our website
+const cookieParser = require('cookie-parser');
+
+//Now use it
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.set('views','./views');
