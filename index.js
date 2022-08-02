@@ -9,7 +9,7 @@ const User = require('./models/users');
 const ExpressLayout = require('express-ejs-layouts');
 
 //This module use to add cookies in our website
-const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser'); 
 
 //Now use it
 app.use(cookieParser());
@@ -36,4 +36,5 @@ app.listen(port , function(err){
     if(err){console.log(`Error occur while runnig server ${err}`);  return;}
     console.log('Server is runnig successfully...Of sample Proj');
 
+    
 }); 

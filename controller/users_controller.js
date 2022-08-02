@@ -2,8 +2,24 @@ const User = require('../models/users');
 
 
 module.exports.profile = function(req , res){
-    console.log('We are here fireing up the Profile Conenc');
-    return res.render('userProfile');
+    //FIRST check cookie is prent or not
+    if(req.cookies.user_id){
+        User.findById( req.cookies.user_id , function(err , user){
+            if(err){ console.log('Error occur while finding data in profile page');}
+            console.log('==============Data Profile : ',user);
+            return res.render('profileNew',{
+                title:'Profile',
+                obj:user
+            });
+        });
+    //if we put res.redirect out of "else" then "cant set header after sent tot client" Error Occur
+    }else{
+        return res.redirect('/users/sign-in');
+    }
+
+
+    // console.log('We are here fireing up the Profile Conenc');
+    // return res.render('userProfile');
 }
 
 module.exports.posts = function(req ,  res ){
@@ -61,7 +77,7 @@ module.exports.createSession = function(req , res){
         //if Found
         if(user){
             //check user password is not matched
-            if(user.password != user.password){
+            if(user.password != user.password){ 
                 return res.redirect('back');
             }
 
