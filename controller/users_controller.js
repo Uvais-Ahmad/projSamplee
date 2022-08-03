@@ -93,3 +93,11 @@ module.exports.createSession = function(req , res){
        
     })
 }
+
+//This function used to SignOut
+//here First we remove Cookies and back to signIn page
+module.exports.signOut = function( req , res ){
+    //first remove Cookies
+    res.clearCookie('user_id');
+    res.redirect('/users/sign-in');
+}

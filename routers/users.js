@@ -17,6 +17,10 @@ router.get('/sign-in',userController.signIn);
 //This is used to Register (SignUp)
 router.post('/create',userController.create);
 
+//This is used to LogIn and Make session i.e. Render to Profile page
 router.post('/create-session',userController.createSession);
+
+//This is Used to sign Out
+router.get('/sign-out',userController.signOut);
 
 module.exports = router;
