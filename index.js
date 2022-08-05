@@ -15,7 +15,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 app.set('view engine', 'ejs');
-app.set('views','./views');
+app.set('views','./views');  
 
 //the subpages css is load at top of page now its append on right place
 // app.set('layout extractStyles',true);
