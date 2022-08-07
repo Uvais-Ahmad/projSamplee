@@ -6,15 +6,17 @@ const passport = require('passport');
 
 //this exe related with users routers 
 //if req comes in '/users/profile' then this will execute
-router.get('/profile',userController.profile);
+//to apply condition that profile Show only once then user SigniN THEN "passport.checkAuthen..."
+
+router.get('/profile', passport.checkAuthentication ,userController.profile);
 
 router.get('/posts',userController.posts);
 
-//This is router to render sign up page Only
-router.get('/sign-up',userController.signUp);
+//This is router to render sign up page Only 
+router.get('/sign-up' ,userController.signUp);
 
 //This is router to render sign in page Only
-router.get('/sign-in',userController.signIn);
+router.get('/sign-in' ,userController.signIn);
 
 //This is used to store the signUp data and signUp the user
 router.post('/create',userController.create);

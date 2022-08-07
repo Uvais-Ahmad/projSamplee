@@ -12,14 +12,28 @@ module.exports.posts = function(req ,  res ){
     return res.render("userposts");
 }  
 
+//if users already signIn we can't open the signIn or signUp page from there 
+
 module.exports.signIn = function(req , res ){
+
+    //if the user is logIn then its shown here
+    if(req.user){
+        return res.redirect('/users/profile');
+    }
     res.render('user_sign_in',{
         title:'SignIn'
     });
 }
 
+
+
 module.exports.signUp = function(req , res ){
-    res.render('user_sign_up',{
+     
+    //first check already logIn or not , If logIn then we cant logIn again
+    if(req.user){
+        return res.redirect('/users/profile');
+    }
+    return res.render('user_sign_up',{
         title:'SignUp'
     });
 }
@@ -54,5 +68,5 @@ module.exports.create = function(req , res ){
 //get the SignIn data AND CREATE A session for a user
 module.exports.createSession = function(req , res){
     console.log('Yes Comes in handler create Session');
-    return res.redirect('/');
+    return res.redirect('/users/profile');
 }
