@@ -46,13 +46,13 @@ module.exports.create = function(req , res ){
             });
         }
         else{
-            res.redirect('back');
+            res.redirect('/users/sign-in');
         }
     })
 }
 
 //get the SignIn data AND CREATE A session for a user
 module.exports.createSession = function(req , res){
-    console.log('Yes Comes in handler');
-    return res.redirect('back');
+    console.log('Yes Comes in handler create Session');
+    return res.redirect('/');
 }

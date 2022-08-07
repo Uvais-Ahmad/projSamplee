@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/users_controller');
-
 //And Passport MOdule
 const passport = require('passport');
 
@@ -21,6 +20,9 @@ router.get('/sign-in',userController.signIn);
 router.post('/create',userController.create);
 
 //This is Used to login using PassportJs and Create a session
-router.post('/create-session', passport.authenticate('local',{failure :'/users/sign-in'}), userController.createSession);
+router.post('/create-session', passport.authenticate(
+    'local',
+    {failureRedirect :'/users/sign-in'}
+), userController.createSession);
 
 module.exports = router;
