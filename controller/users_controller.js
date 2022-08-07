@@ -53,5 +53,6 @@ module.exports.create = function(req , res ){
 
 //get the SignIn data AND CREATE A session for a user
 module.exports.createSession = function(req , res){
-    //Todo later
+    console.log('Yes Comes in handler');
+    return res.redirect('back');
 }

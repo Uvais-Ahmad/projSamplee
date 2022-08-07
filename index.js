@@ -11,6 +11,11 @@ const ExpressLayout = require('express-ejs-layouts');
 //This module use to add cookies in our website
 const cookieParser = require('cookie-parser');
 
+//for passport Session
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
 //Now use it
 app.use(cookieParser());
 
@@ -27,10 +32,21 @@ app.use(express.urlencoded());
 app.use(express.static('assets'));
 //This middleware used to launch the Layout System
 // app.use(ExpressLayout);
+
+
+//Use For passportJs library
+app.use(session({
+    name:"projSamplee",
+    secret:'ThisIsUvaisAhmad',
+    saveUninitialized : false,
+    resave :false,
+    cookie:{
+        maxAge:(1000*60*100)
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/',require('./routers'));
-
-
-
 
 app.listen(port , function(err){
     if(err){console.log(`Error occur while runnig server ${err}`);  return;}

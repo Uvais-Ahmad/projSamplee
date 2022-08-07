@@ -1,6 +1,6 @@
 //first add Module of passport
 const passport = require('passport');
-
+console.log("PassportJs start");
 //Adding which strategy u want to include in this file so here we use PASSPORT-LOCAL strategy
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -50,4 +50,4 @@ passport.deserializeUser( function( id , done){
 });
 
 
-module.exports = passport;
+module.exports = passport;  

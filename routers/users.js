@@ -2,18 +2,25 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controller/users_controller');
 
+//And Passport MOdule
+const passport = require('passport');
+
 //this exe related with users routers 
 //if req comes in '/users/profile' then this will execute
 router.get('/profile',userController.profile);
 
 router.get('/posts',userController.posts);
 
-//This is router to render sign up page
+//This is router to render sign up page Only
 router.get('/sign-up',userController.signUp);
 
-//This is router to render sign in page
+//This is router to render sign in page Only
 router.get('/sign-in',userController.signIn);
 
+//This is used to store the signUp data and signUp the user
 router.post('/create',userController.create);
+
+//This is Used to login using PassportJs and Create a session
+router.post('/create-session', passport.authenticate('local',{failure :'/users/sign-in'}), userController.createSession);
 
 module.exports = router;
