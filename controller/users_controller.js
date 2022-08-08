@@ -3,7 +3,9 @@ const User = require('../models/users');
 
 module.exports.profile = function(req , res){
     console.log('We are here fireing up the Profile Conenc');
-    return res.render('userProfile');
+    return res.render('userProfile',{
+        user:res.user
+    });
 }
 
 module.exports.posts = function(req ,  res ){
@@ -60,6 +62,7 @@ module.exports.create = function(req , res ){
             });
         }
         else{
+            
             res.redirect('/users/sign-in');
         }
     })
@@ -67,6 +70,6 @@ module.exports.create = function(req , res ){
 
 //get the SignIn data AND CREATE A session for a user
 module.exports.createSession = function(req , res){
-    console.log('Yes Comes in handler create Session');
+ 
     return res.redirect('/users/profile');
 }

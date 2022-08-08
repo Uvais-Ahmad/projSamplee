@@ -16,6 +16,9 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
+//MongoStore for session storing
+const MongoStore = require('connect-mongo')(session);
+// const MongoDBStore = require('connect-mongodb-session')(session);
 app.use(express.urlencoded({extended:true}));
 
 //Now use it
@@ -36,6 +39,7 @@ app.set('view engine', 'ejs');
 app.set('views','./views'); 
 
 //Use For passportJs library
+//,pmgo Store , store th sessions cookie in th 'DB'
 app.use(session({
     name:"projSamplee",
     secret:'ThisIsUvaisAhmad',
@@ -43,7 +47,18 @@ app.use(session({
     resave :false,
     cookie:{
         maxAge:(1000*60*100)
-    }
+    },
+    store: new MongoStore(
+        {
+            mongooseConnection : db,
+            autoRemove :'disabled'
+        },
+        function(err){
+            console.log( 'MongoStore Setup is Ok .')
+        }
+    )
+ 
+
 }));
 app.use(passport.initialize());
 app.use(passport.session());

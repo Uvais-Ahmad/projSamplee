@@ -64,7 +64,8 @@ passport.checkAuthentication = function( req , res , next ){
 passport.setAuthenticatedUser = function( req , res , next){
     if(req.isAuthenticated()){
         //if the user LigIn we sending Locals of users for the views
-        req.local.user = req.user;
+        res.locals.user = req.user;
+        
     }
     //after setting next() here req pass to the nextTransfer
     next();
