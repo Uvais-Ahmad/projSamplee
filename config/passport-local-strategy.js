@@ -23,12 +23,9 @@ passport.use( new LocalStrategy({
                 console.log('Invalid username or password');
                 return done(null , false);
             }
-
             return done(null , user);
         });
-
     }
-
 ));
 
 //serializing the user to decide which key is to be kept in the cookie i.e. it add UserId cookie in user browser in Encrypted form
@@ -45,7 +42,6 @@ passport.deserializeUser( function( id , done){
             return done(err);
         }
         return done(null , user);
-
     });
 });
 
@@ -54,7 +50,6 @@ passport.checkAuthentication = function( req , res , next ){
     console.log("CHECK AUTH CALLED");
     //if the user is signIn , then pass on the request to the next function(controller function)
     if(req.isAuthenticated()){
-        
         return next();
     }
     return res.redirect('/users/sign-in');
@@ -67,11 +62,9 @@ passport.setAuthenticatedUser = function( req , res , next){
         //and we are just sending locals for views
         console.log("set Authentication called");
         res.locals.user = req.user;
-        
     }
     //after setting next() here req pass to the nextTransfer
     next();
 }
-
 
 module.exports = passport;  

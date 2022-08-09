@@ -2,20 +2,15 @@ const User = require('../models/users');
 
 
 module.exports.profile = function(req , res){
-    console.log("Current User on profile :");
     return res.render('userProfile');
 }
 
 module.exports.posts = function(req ,  res ){
-
-    console.log('=======================POst firing up ');
     return res.render("userposts");
 }  
 
 //if users already signIn we can't open the signIn or signUp page from there 
-
 module.exports.signIn = function(req , res ){
-
     //if the user is logIn then its shown here
     if(req.user){
         return res.redirect('/users/profile');
@@ -24,8 +19,6 @@ module.exports.signIn = function(req , res ){
         title:'SignIn'
     });
 }
-
-
 
 module.exports.signUp = function(req , res ){
      
@@ -38,8 +31,7 @@ module.exports.signUp = function(req , res ){
     });
 }
 
-
-//GET THE signUp data
+//Used to store the SignUp data to the database(MongoDB)
 module.exports.create = function(req , res ){
     //if password and confirm pass is not matched
     if(req.body.password != req.body.confirm_password){
@@ -55,25 +47,19 @@ module.exports.create = function(req , res ){
         if(!user){
             User.create(req.body ,function(err , user){
                 if(err){ console.log('Error , Storing data in mongoDB ');}
-
                 res.redirect('/users/sign-in');
             });
         }
-        else{
-            
+        else{            
             res.redirect('/users/sign-in');
         }
-    })
+    });
 }
 
-//get the SignIn data AND CREATE A session for a user
+//Get the signIn data and create sessioncooki for the user
 module.exports.createSession = function(req , res){
-    console.log(req.user);
-    
-    
-    return res.redirect('/users/profile');
+    return res.redirect('/');
 }
-
 
 //This action used to deestroy the session
 module.exports.destroySession = function( req , res ){
@@ -81,7 +67,5 @@ module.exports.destroySession = function( req , res ){
     req.logout(function(err){
         if(err){ console.log(`Error Occur while Logout the session ${err}`); return next(err);}
         return res.redirect('/');
-
     });
-    
 }

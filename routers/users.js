@@ -20,13 +20,13 @@ router.get('/sign-in' ,userController.signIn);
 
 //This is used to store the signUp data and signUp the user
 router.post('/create',userController.create);
-
 //This is Used to login using PassportJs and Create a session
 router.post('/create-session', passport.authenticate(
     'local',
     {failureRedirect :'/users/sign-in'}
 ), userController.createSession);
 
+//to clear all the data of the session 
 router.get('/sign-out',userController.destroySession);
 
 module.exports = router;
