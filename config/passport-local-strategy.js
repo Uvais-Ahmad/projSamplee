@@ -51,7 +51,7 @@ passport.deserializeUser( function( id , done){
 
 //check if the user is authenticateds
 passport.checkAuthentication = function( req , res , next ){
-
+    console.log("CHECK AUTH CALLED");
     //if the user is signIn , then pass on the request to the next function(controller function)
     if(req.isAuthenticated()){
         
@@ -63,7 +63,9 @@ passport.checkAuthentication = function( req , res , next ){
     //set the Authencticator usesr values
 passport.setAuthenticatedUser = function( req , res , next){
     if(req.isAuthenticated()){
-        //if the user LigIn we sending Locals of users for the views
+        //req.user contains the current signed in user from the session cookies
+        //and we are just sending locals for views
+        console.log("set Authentication called");
         res.locals.user = req.user;
         
     }

@@ -2,10 +2,8 @@ const User = require('../models/users');
 
 
 module.exports.profile = function(req , res){
-    console.log('We are here fireing up the Profile Conenc');
-    return res.render('userProfile',{
-        user:res.user
-    });
+    console.log("Current User on profile :");
+    return res.render('userProfile');
 }
 
 module.exports.posts = function(req ,  res ){
@@ -70,6 +68,20 @@ module.exports.create = function(req , res ){
 
 //get the SignIn data AND CREATE A session for a user
 module.exports.createSession = function(req , res){
- 
+    console.log(req.user);
+    
+    
     return res.redirect('/users/profile');
+}
+
+
+//This action used to deestroy the session
+module.exports.destroySession = function( req , res ){
+    //This function tell the passportJs to delete session
+    req.logout(function(err){
+        if(err){ console.log(`Error Occur while Logout the session ${err}`); return next(err);}
+        return res.redirect('/');
+
+    });
+    
 }

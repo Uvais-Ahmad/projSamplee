@@ -1,2 +1,28 @@
 <!-- this is the partial which set using include() function inside EJS tags -->
-<h4>We are joining the HEADER of the webpages</h4>
+<h4>Page Of Header</h4>
+
+<ul>
+
+    <% if(locals.user) { %>
+        
+        <li>
+            <h2><%= user.name %> </h2>
+        </li>
+        <li >
+            <a href="/users/sign-out">Sign Out</a>
+        </li>
+        
+    <% } else{ %> 
+    
+        
+        <li>
+            <a href="/users/sign-in" >Sign In</a>
+        </li>
+
+        <li>
+            <a href="/users/sign-up" >Sign Up</a>
+        </li>
+
+    <% } %> 
+
+</ul>
