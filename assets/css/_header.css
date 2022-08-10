@@ -1,0 +1,22 @@
+#_header {
+  background-color: #0f3d3f;
+  display: flex;
+  justify-content: space-between;
+  height: 50px; }
+  #_header #logo {
+    font-family: serif;
+    font-size: 2.3rem;
+    font-weight: bolder;
+    color: #dbe8f3;
+    font-style: 2.4rem;
+    padding: 2px 20px; }
+  #_header a {
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: bolder;
+    margin: 10px; }
+  #_header li {
+    list-style: none;
+    padding: 15px; }
+  #_header ul {
+    display: flex; }

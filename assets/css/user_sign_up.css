@@ -1,7 +1,9 @@
-.signUp{
-	background-color: #f5f5f5;
-	border: 0px;
-}
-body{
-	background-color: #ede9e8;
-}
+.signUp {
+  background-color: #f5f5f5;
+  border: 0px; }
+
+body {
+  background-color: #ede9e8; }
+
+#head {
+  background-color: #f5f5f5; }

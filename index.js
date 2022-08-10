@@ -17,6 +17,17 @@ const passportLocal = require('./config/passport-local-strategy');
 //MongoStore for session storing
 const MongoStore = require('connect-mongo');
 
+//this is used to add SASS style on file
+const sassMiddleware = require('node-sass-middleware');
+//this is must be used just before server started
+app.use(sassMiddleware({
+    src:"./assets/scss",
+    dest:"./assets/css",
+    debug:true,
+    outputStyle:"extended",
+    prefix:'/css'
+}));
+
 //Used for accepting data sent by the FORM tags inside req.body
 app.use(express.urlencoded({extended:true}));
 
