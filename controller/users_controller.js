@@ -34,6 +34,7 @@ module.exports.signUp = function(req , res ){
 //Used to store the SignUp data to the database(MongoDB)
 module.exports.create = function(req , res ){
     //if password and confirm pass is not matched
+    console.log(req.body);
     if(req.body.password != req.body.confirm_password){
         res.redirect('back');
     }
