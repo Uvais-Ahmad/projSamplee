@@ -6,7 +6,7 @@
     <!-- locals is a variable of req and it store the another onbject name user -->
         <% if(locals.user) { %>
             <li>
-                <h2><a href="/users/profile" ><%= user.name %></a> </h2>
+                <a href="/users/profile" ><%= user.name %></a>
             </li>
             <li >
                 <a href="/users/sign-out">Sign Out</a>

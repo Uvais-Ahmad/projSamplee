@@ -2,3 +2,5 @@ body {
   margin: 0;
   color: #123b12;
   font-family: sans-serif; }
+  body #main_body {
+    min-height: 450px; }
