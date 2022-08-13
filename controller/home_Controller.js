@@ -5,5 +5,8 @@ module.exports.home = function(req , res ){
     
     //its already stored cookies while requesting the server
     console.log(req.cookies);
+
+    
+
     return res.render('home' , {title : 'homePage'});
 }
