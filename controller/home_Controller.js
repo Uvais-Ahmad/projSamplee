@@ -1,12 +1,27 @@
+const Post = require('../models/post')
 module.exports.home = function(req , res ){
     //using end() we direct work but we render an ejs file here
     // res.end('<h1>Controller set and Express start for controller</h1>');
-    
-    
-    //its already stored cookies while requesting the server
-    console.log(req.cookies);
+    // its already stored cookies while requesting the serve console.log(req.cookies);
 
-    
+    //Find all the post
+    // Post.find( {} , function(err , posts){
+    //     if(err){ console.log('Error Occur while find POST'); }
 
-    return res.render('home' , {title : 'homePage'});
+    //     return res.render('home' , {
+    //         title : 'HomePage',
+    //         posts:posts
+    //     });
+    // });
+
+    //to find all details about refrenced user  Use POPULATE() func
+
+    Post.find({}).populate('user').exec(function(err , posts ){
+        
+        if(err){ console.log('Error Occur while find POST'); }
+        return res.render('home' , {
+            title : 'HomePage',
+            posts:posts
+        });
+    });
 }

@@ -7,7 +7,8 @@ module.exports.create = function( req , res ){
         content : req.body.content,
         user:req.user._id       //here auto callled setAuth function 
     } , function( err , post ){
-        if(err){ console.log('Error in creating a posts'); return; }
+        if(err){ console.log('Error in creating a posts'); }
+
         return res.redirect('back');
     });
 }

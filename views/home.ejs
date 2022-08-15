@@ -1,14 +1,23 @@
+<link rel="stylesheet" href="/css/home.css">
 <h2>Codial / <%= title %></h2>
-
 <section id="feed-posts">
     
     <h3>Posts</h3>
     <form action="/posts/create" id="new-post-form" method="POST">
-        <textarea name="content" cols="30" rows="4" placeholder="write post here..."></textarea><br>
-        <input type="submit" value="Post">
+        <textarea id="content" name="content" cols="30" rows="4" placeholder="write post here..."></textarea><br>
+        <input type="submit" value="Post" id="post-btn">
     </form>
 </section>
 
 <section id="posts">
-    
+    <% for( let p of posts){  %> 
+        <div id="post">
+            <h3 id="cont">
+                <%= p.content %> <br>
+            </h3>
+            <h4 id="user">
+                <%= p.user.name %><br>
+            </h4>
+        </div>
+    <% } %> 
 </section>

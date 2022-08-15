@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema({
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
-        required:true
+        ref:'User'      //Give Schema name which saved in Model()
     }
 },{
     timestamps:true
