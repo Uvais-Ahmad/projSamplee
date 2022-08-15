@@ -1,6 +1,6 @@
 #feed-posts{
     font-family: sans-serif;
-    margin-left: 20px;
+    margin-left: 25px;
     h3{
         font-size: 2.2rem;
         margin: 5px;
@@ -13,13 +13,14 @@
         border: .6px solid #cac6c6;
         border-radius: 15px;
         box-shadow: 1px 1px 3px 2px rgb(226, 224, 224);
+        font-size: 1rem;
     }
     #post-btn{
         background-color: #1c6097;
         border-radius: 5px;
-        padding: 10px 30px;
+        padding: 5px 30px;
         margin: 10px;
-        
+        margin-left: 0px;
         font-size: 1.2rem;
         outline: none;
         cursor: pointer;
@@ -28,7 +29,7 @@
     }
 
 }
-
+// ======================================================
 #posts{
     margin-left: 10px;
     #post{
@@ -47,4 +48,34 @@
         }
     }
 
+}
+// =====================================================
+#comment-form{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid lightgrey;
+    padding-top: 10px;
+    #content{
+        width: 80%;
+        line-height: 1.5rem;
+        padding: 5px 8px 5px 15px;
+        outline: none;
+        border: 0px;
+        font-size: 1.2rem;
+    }
+    #content::placeholder{
+        font-size: 1.2rem;
+        font-weight: 300;
+        
+    }
+    #comment-btn{
+        outline: none;
+        border: 0px;
+        background-color: white;
+        font-size: 1.2rem;
+        font-weight: 300;
+        color: #3a9ae9;
+        cursor: pointer;
+    }
 }
