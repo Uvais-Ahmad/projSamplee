@@ -15,6 +15,7 @@ router.get('/',homeController.home);
 router.use('/users' , require('./users'));
 //Router connnected with post id any request comes with post
 router.use('/posts',require('./posts'));
+router.use('/comments',require('./comments'));
 
 //for any further routes   , access from here
 // router.use('/routerName', require('routerFile'));

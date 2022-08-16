@@ -14,6 +14,8 @@ const commentSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Post'
     }
+} , {
+    timestamps :true
 });
 
 //Gives the first Capital Letter of Model Schema

@@ -1,8 +1,9 @@
 const express = require('express');
-const router  = require(express.Router());
+const router  = express.Router();
 const commentController = require('../controller/comments_controller');
-const Comment = require('../models/comment');
 const passport = require('passport');
 
 
-router.post('/create' , commentController.create);
+router.post('/create' , passport.checkAuthentication, commentController.create);
+
+module.exports = router;
