@@ -4,11 +4,10 @@ const Post = require('../models/post');
 module.exports.create = function( req , res ){
     //first Find is there Any post on which comment post
     //post is the hidden input Value sent by form
-
+    console.log(req.body);
     
     Post.findById(req.body.post , function( err , post ){
-        console.log(req.body.post);
-        if(err){console.log(`Error Occur while finding post for comment : ${err}`);}
+        if(err){console.log(`Error Occur while finding post for comment, ${err}`);}
 
         if(post){
             Comment.create({

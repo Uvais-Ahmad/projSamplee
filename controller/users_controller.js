@@ -48,12 +48,10 @@ module.exports.create = function(req , res ){
         if(!user){
             User.create(req.body ,function(err , user){
                 if(err){ console.log('Error , Storing data in mongoDB ');}
-                res.redirect('/users/sign-in');
+                // res.redirect('/users/sign-in');
             });
         }
-        else{            
-            res.redirect('/users/sign-in');
-        }
+        res.redirect('/users/sign-in');
     });
 }
 
