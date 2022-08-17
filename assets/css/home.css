@@ -25,6 +25,25 @@
     border: 0px;
     box-shadow: 1px 1px 5px 2px lightgrey; }
 
+#comment-container {
+  margin-top: 50px;
+  padding: 10px; }
+  #comment-container #tag {
+    margin: 5px;
+    color: darkslategrey; }
+  #comment-container #post-comments-list {
+    padding-left: 20px; }
+    #comment-container #post-comments-list .comment {
+      display: flex;
+      margin: 10px;
+      border-bottom: 1px solid lightgrey; }
+      #comment-container #post-comments-list .comment h4 {
+        color: #3a9ae9;
+        margin: 2px; }
+      #comment-container #post-comments-list .comment p {
+        color: #c7c5c5;
+        margin: 2px; }
+
 #posts {
   margin-left: 10px; }
   #posts #post {
@@ -41,11 +60,8 @@
       color: grey; }
 
 #comment-form {
-  margin-top: 50px;
   display: flex;
-  justify-content: space-between;
-  border-top: 1px solid lightgrey;
-  padding-top: 10px; }
+  justify-content: space-between; }
   #comment-form #content {
     width: 80%;
     line-height: 1.5rem;

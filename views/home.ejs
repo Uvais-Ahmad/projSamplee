@@ -21,6 +21,20 @@
             <h4 id="user">
                 <%= p.user.name %><br>
             </h4>
+
+            <div id="comment-container">
+                <h1 id="tag">Comments :</h1>
+                <div id="post-comments-list">
+                    <% for(comment of p.comments){ %>
+                            
+                        <div class="comment">
+                            <h4><%= comment.user.name %></h4>
+                            <p><%= comment.content %></p>
+                        </div>
+
+                    <% } %> 
+                </div>
+            </div>
             
             <% if(locals.user){ %>
                 <form action="/comments/create" method="POST" id="comment-form">
@@ -30,7 +44,6 @@
                     <input type="submit" value="Post" id="comment-btn">
                 </form>
             <% } %>
-
         </div>
     <% } %> 
 </section>

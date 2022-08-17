@@ -29,6 +29,37 @@
     }
 
 }
+//======================================================
+#comment-container{
+    margin-top: 50px;
+    padding: 10px;
+    // border-top: 1px solid lightgre;
+    #tag{
+        margin: 5px;
+        color:darkslategrey
+    }
+    #post-comments-list{
+        padding-left: 20px;
+
+        .comment{
+            display: flex;
+            margin: 10px;
+            border-bottom: 1px solid lightgrey;
+            h4{
+                color: #3a9ae9;
+                margin: 2px;
+            }
+            p{
+                color: #c7c5c5;
+                margin: 2px;
+            }
+
+        }
+    }
+
+}
+
+
 // ======================================================
 #posts{
     margin-left: 10px;
@@ -51,11 +82,10 @@
 }
 // =====================================================
 #comment-form{
-    margin-top: 50px;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid lightgrey;
-    padding-top: 10px;
+    // border-top: 1px solid lightgrey;
+    // padding-top: 10px;
     #content{
         width: 80%;
         line-height: 1.5rem;

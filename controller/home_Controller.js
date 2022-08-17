@@ -16,9 +16,16 @@ module.exports.home = function(req , res ){
 
     //to find all details about refrenced user  Use POPULATE() func
 
-    Post.find({}).populate('user').exec(function(err , posts ){
+    Post.find({})
+    .populate('user')
+    .populate({
+        path:'comments',
+        populate:{ path:'user'}
+    })
+    .exec(function(err , posts ){
         
-        if(err){ console.log('Error Occur while find POST'); }
+        if(err){ console.log('Error Occur while find POST ,',err); }
+        console.log(posts.comments);
         return res.render('home' , {
             title : 'HomePage',
             posts:posts
