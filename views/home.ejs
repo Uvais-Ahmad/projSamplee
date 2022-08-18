@@ -15,6 +15,15 @@
 <section id="posts">
     <% for( let p of posts){  %> 
         <div id="post">
+
+            <!-- this deletion Shows Only when the user logged In and oNLY valid for users own post -->
+            <% if( locals.user && p.user.id == locals.user.id ) { %> 
+                
+                <small>
+                    <a href="/posts/destroy/<%= p.id %> ">X</a>
+                </small>
+            
+            <% } %> 
             <h3 id="cont">
                 <%= p.content %> <br>
             </h3>
