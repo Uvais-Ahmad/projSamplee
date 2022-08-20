@@ -22,7 +22,29 @@ module.exports.create = function( req , res ){
 
                     res.redirect('/');
             });
-        }
-        
+        }  
     })
+}
+
+//Used to delete the comment
+module.exports.destroy = function( req , res ){
+    //First Check comment is Exist
+    Comment.findById( req.params.id , function(err , comment ){
+        if(err){ console.log('There is an Error While finding the comment to delete')}
+        
+        if( comment.user == req.user.id ){
+  
+            //Comment present on this post
+            let postId = comment.post;
+            //Now remove the comment
+            comment.remove();
+            //On that post id Find Comment id inside array of comment and Update it
+            Post.findByIdAndUpdate( postId , { $pull : { comments : req.params.id}} , function (err , post){
+                return res.redirect('back');
+            })
+        }
+        else{
+            return res.redirect('back');
+        }
+    });
 }

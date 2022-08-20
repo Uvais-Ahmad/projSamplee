@@ -35,7 +35,14 @@
                 <h1 id="tag">Comments :</h1>
                 <div id="post-comments-list">
                     <% for(comment of p.comments){ %>
-                            
+                        <!-- A post's user and a comment comment user both can delete own commnet or Own post comment -->
+                        <% if( locals.user && locals.user.id == p.user.id  ) { %> 
+                
+                            <small>
+                                <a href="/comments/destroy/<%=comment.id %> ">X</a>
+                            </small>
+                        
+                        <% } %> 
                         <div class="comment">
                             <h4><%= comment.user.name %></h4>
                             <p><%= comment.content %></p>
