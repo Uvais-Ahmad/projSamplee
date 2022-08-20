@@ -1,9 +1,14 @@
 <link rel="stylesheet" href="/css/users_posts.css">
 <!-- This is the layout Which is auto set to the Main LAYOUT FILE -->
-<ul>
-    <% for(let i =0 ; i<5 ; i++){  %>
-        
-        <li>This is Link by Uvais Ahmad is : <% i %> </li>
-    
-    <% } %> 
-</ul>
+<h1>
+    Codial / Profile Page
+</h1>
+
+<div>
+    <p>
+        <%= profile_user.name %> 
+    </p>
+    <p>
+        <%= profile_user.email %> 
+    </p>
+</div>

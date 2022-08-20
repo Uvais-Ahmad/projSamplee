@@ -1,4 +1,5 @@
-const Post = require('../models/post')
+const Post = require('../models/post');
+const User = require('../models/users');
 module.exports.home = function(req , res ){
     //using end() we direct work but we render an ejs file here
     // res.end('<h1>Controller set and Express start for controller</h1>');
@@ -25,10 +26,13 @@ module.exports.home = function(req , res ){
     .exec(function(err , posts ){
         
         if(err){ console.log('Error Occur while find POST ,',err); }
-        console.log(posts.comments);
-        return res.render('home' , {
-            title : 'HomePage',
-            posts:posts
-        });
+        
+        User.find({} , function( err , users){
+            return res.render('home' , {
+                title : 'HomePage',
+                posts:posts ,
+                all_users : users
+            });
+        })
     });
 }

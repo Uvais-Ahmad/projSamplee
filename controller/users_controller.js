@@ -2,7 +2,14 @@ const User = require('../models/users');
 
 
 module.exports.profile = function(req , res){
-    return res.render('userProfile');
+    //Now profile page shownig only using Id of user
+    User.findById( req.params.id , function ( err , user){
+        return res.render('userProfile',{
+            title:'User Profile',
+            profile_user : user
+        });
+    })
+    
 }
 
 module.exports.posts = function(req ,  res ){

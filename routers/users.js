@@ -8,7 +8,7 @@ const passport = require('passport');
 //if req comes in '/users/profile' then this will execute
 //to apply condition that profile Show only once then user SigniN THEN "passport.checkAuthen..."
 
-router.get('/profile', passport.checkAuthentication ,userController.profile);
+router.get('/profile/:id', passport.checkAuthentication ,userController.profile);
 
 router.get('/posts',userController.posts);
 
