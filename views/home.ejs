@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/home.css">
-<h2>Codial / <%= title %></h2>
+<h2 style="text-align: center; font-size:2rem; margin:15px auto">Codial / <%= title %></h2>
 <section id="feed-posts">
     
     <!-- Apply condition Only Auth user can post -->
@@ -20,10 +20,10 @@
 </section>
 
 <section id="user-friends">
-    <h3>Friends </h3>
+    <h1>Friends </h1>
     <% for(u of all_users){ %>
         <p>
-            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+            <a id="friend" href="/users/profile/<%= u.id %>"><%= u.name %></a>
         </p>
     <% } %> 
 </section>
