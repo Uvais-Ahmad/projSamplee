@@ -12,6 +12,20 @@ module.exports.profile = function(req , res){
     
 }
 
+//This is used to update User information
+module.exports.update = function( req , res ){
+    //first Check is Auth
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate( req.params.id , req.body , function( err , user){ //{ name:req.body.name, email:req.body.email}
+            if( err ){ console.log('Error Occur while updating the user details'); }
+            return res.redirect('back');
+        })
+    }else{
+        return res.status();    //200 for success 400 not  find
+    }
+
+}
+
 module.exports.posts = function(req ,  res ){
     return res.render("userposts");
 }  
