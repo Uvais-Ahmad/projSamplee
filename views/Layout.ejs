@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="/css/_header.css">
     <link rel="stylesheet" href="/css/_footer.css">
     <link rel="stylesheet"  href="/css/Layout.css">
@@ -18,12 +22,12 @@
 <body>
     <%- include('_header') %> 
 
-    <% if( flash.success && flash.success.length>0 ) { %>
+                    <!-- Simple Flash Messages -->
+    <!-- < if( flash.success && flash.success.length>0 ) { >
         <h3>
-            <%= flash.success %> 
+            <= flash.success > 
         </h3>    
-    <% } %> 
-
+    < } >  -->
     <main id="main_body">
         <%- body %>
     </main> 
@@ -31,6 +35,34 @@
     <%- include('_footer') %> 
 
     <%-script %>
+
+    <script>
+        <% if( flash.success && flash.success.length > 0 ) { %>
+            
+            new Noty({
+                theme: 'relax' ,
+                text: '<%= flash.success %>',
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+                
+            }).show();
+
+        <% } %> 
+
+        <% if( flash.error && flash.error.length > 0 ) { %>
+            
+            new Noty({
+                theme: 'relax' ,
+                text: '<%= flash.error %>',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500
+                
+            }).show();
+
+        <% } %>
+    </script>
     
 </body>
 </html>

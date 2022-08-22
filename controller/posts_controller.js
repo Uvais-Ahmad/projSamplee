@@ -1,37 +1,45 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
-module.exports.create = function( req , res ){
-    //this is used to create the data of post 
-    Post.create({
-        //set Value of content and user on which id we post
-        content : req.body.content,
-        user:req.user._id       //here auto callled setAuth function 
-    } , function( err , post ){
-        if(err){ console.log('Error in creating a posts'); }
+module.exports.create =async function( req , res ){
 
+    try{
+        //this is used to create the data of post 
+        await Post.create({
+        //set Value of content and user on which id we post
+            content : req.body.content,
+            user:req.user._id       //here auto callled setAuth function 
+        })
+        req.flash('success','Post Published !');
         return res.redirect('back');
-    });
-}
+    }
+    catch(err){
+        req.flash('error',err); return;
+    }
+    
+};
+
 
 //to delete the post 
-module.exports.destroy = function(req , res){
+module.exports.destroy = async function(req , res){
     //first check is there any post
-    Post.findById( req.params.id , function( err , post ){
+    try{
+        let post = await Post.findById( req.params.id )
 
-        if(err){
-            console.log('Error Occur while finding the post to delete ',err);
-        }
-        //.id means to conver _id into string
+            //.id means to conver _id into string
         if( post.user == req.user.id ){
             post.remove();
-
-            Comment.deleteMany({ post : req.params.id},function(err){
-                if(err){console.log('Occur while deleteing comments of post deleting')}
-                return res.redirect('back');
-            })
-        }else{
+            await Comment.deleteMany({ post : req.params.id})
+            req.flash('success','Post Deleted with All comment!');
             return res.redirect('back');
         }
-    });
+        else{
+            req.flash('error','User UnAuthorized You cant Delete');
+            return res.redirect('back');
+        }
+    }
+    catch(err){
+        req.flash('error',err);
+        return res.redirect('back');
+    }
 }

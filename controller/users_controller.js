@@ -18,6 +18,7 @@ module.exports.update = function( req , res ){
     if(req.user.id == req.params.id){
         User.findByIdAndUpdate( req.params.id , req.body , function( err , user){ //{ name:req.body.name, email:req.body.email}
             if( err ){ console.log('Error Occur while updating the user details'); }
+            req.flash('success','Updated !');
             return res.redirect('back');
         })
     }else{
@@ -57,6 +58,7 @@ module.exports.create = function(req , res ){
     //if password and confirm pass is not matched
     console.log(req.body);
     if(req.body.password != req.body.confirm_password){
+        req.flash('error','confirm password not matched');
         res.redirect('back');
     }
     
@@ -69,6 +71,7 @@ module.exports.create = function(req , res ){
         if(!user){
             User.create(req.body ,function(err , user){
                 if(err){ console.log('Error , Storing data in mongoDB ');}
+                req.flash('success','Signed Up');
                 // res.redirect('/users/sign-in');
             });
         }
@@ -86,7 +89,6 @@ module.exports.createSession = function(req , res){
 //This action used to deestroy the session
 module.exports.destroySession = function( req , res ){
     req.flash('success','You have logged out!');
-
     //This function tell the passportJs to delete session
     req.logout(function(err){
         if(err){ console.log(`Error Occur while Logout the session ${err}`); return next(err);}
