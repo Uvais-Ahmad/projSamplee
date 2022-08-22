@@ -78,11 +78,15 @@ module.exports.create = function(req , res ){
 
 //Get the signIn data and create sessioncooki for the user
 module.exports.createSession = function(req , res){
+    //we set it in req body
+    req.flash('success','Logged In successfully');
     return res.redirect('/');
 }
 
 //This action used to deestroy the session
 module.exports.destroySession = function( req , res ){
+    req.flash('success','You have logged out!');
+
     //This function tell the passportJs to delete session
     req.logout(function(err){
         if(err){ console.log(`Error Occur while Logout the session ${err}`); return next(err);}

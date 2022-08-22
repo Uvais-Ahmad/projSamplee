@@ -19,6 +19,12 @@ const MongoStore = require('connect-mongo');
 
 //this is used to add SASS style on file
 const sassMiddleware = require('node-sass-middleware');
+
+//Flash messages module
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
+
 //this is must be used just before server started
 app.use(sassMiddleware({
     src:"./assets/scss",
@@ -75,6 +81,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 //set The authenticated user in the locals
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 //This must be use at the end of the functions
 app.use('/',require('./routers'));
