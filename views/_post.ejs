@@ -1,4 +1,4 @@
-<div id="post" >
+<div class="post" id="post-<%= p._id %> ">
     <!-- this deletion Shows Only when the user logged In and oNLY valid for users own post -->
     <!-- Deleting Post sectiom -->
     <% if( locals.user && p.user.id == locals.user.id ) { %> 
@@ -20,7 +20,7 @@
     <!-- Comments list Showing Section -->
     <div id="comment-container">
         <h1 id="tag">Comments :</h1>
-        <div id="post-comments-list">
+        <div class="post-comments-list" id="post-comments-<%= p._id %> ">
             <% for(comment of p.comments){ %>
                 <%- include('_comment',{comment:comment}) %> 
 

@@ -40,7 +40,7 @@
         margin: 5px;
         color:darkslategrey
     }
-    #post-comments-list{
+    .post-comments-list{
         padding-left: 20px;
 
         .comment{
@@ -66,7 +66,7 @@
 #posts{
     margin-left: 10px;
     display: inline-block;
-    #post{
+    .post{
         border: 1px solid lightgrey;
         border-radius: 10px;
         box-shadow: 1px 1px 5px 3px #c7c5c5;

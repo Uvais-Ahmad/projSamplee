@@ -33,32 +33,32 @@
   #comment-container #tag {
     margin: 5px;
     color: darkslategrey; }
-  #comment-container #post-comments-list {
+  #comment-container .post-comments-list {
     padding-left: 20px; }
-    #comment-container #post-comments-list .comment {
+    #comment-container .post-comments-list .comment {
       display: flex;
       margin: 10px;
       border-bottom: 1px solid lightgrey; }
-      #comment-container #post-comments-list .comment h4 {
+      #comment-container .post-comments-list .comment h4 {
         color: #3a9ae9;
         margin: 2px; }
-      #comment-container #post-comments-list .comment p {
+      #comment-container .post-comments-list .comment p {
         color: #c7c5c5;
         margin: 2px; }
 
 #posts {
   margin-left: 10px;
   display: inline-block; }
-  #posts #post {
+  #posts .post {
     border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 1px 1px 5px 3px #c7c5c5;
     max-width: 450px;
     padding: 8px 20px;
     margin: 20px 15px; }
-    #posts #post #cont {
+    #posts .post #cont {
       margin: 5px; }
-    #posts #post #user {
+    #posts .post #user {
       margin: 5px;
       color: grey; }
 
