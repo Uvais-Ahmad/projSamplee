@@ -5,11 +5,22 @@ module.exports.create =async function( req , res ){
 
     try{
         //this is used to create the data of post 
-        await Post.create({
+        let post = await Post.create({
         //set Value of content and user on which id we post
             content : req.body.content,
             user:req.user._id       //here auto callled setAuth function 
         })
+
+        //First Check is AJAX requested or Not xhr == XmlHttpRequest
+        if(req.xhr)
+        {   console.log('Yes response from POST controller ');
+            return res.status(200).json({
+                data:{
+                    post : post
+                },
+                message:"Post Created"
+            })
+        }
         req.flash('success','Post Published !');
         return res.redirect('back');
     }
