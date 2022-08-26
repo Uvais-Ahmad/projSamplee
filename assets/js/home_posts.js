@@ -20,11 +20,12 @@
     }
     // method to create a post in DOM
     let newPostDom = function(post){
-
         //here we return While Page of '_post.ejs'
+        $('#content').val('');
+
         return(
             `<div class="post" id="post-${post._id}">
-                <--Thsi si Me -->
+                
                 <small>
                     <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
                 </small>
@@ -52,7 +53,24 @@
         </div>`
         )
     }
-
+    console.log('This is Main POST',p);
+    //Method to delete a post in DOM
+    let deletePost = function(deleteLink){
+    
+        $(deleteLink).click(function(e){
+            e.preventDefault();
+            console.log(deleteLink);
+            $.ajax({
+                type:'get',
+                url: $(deleteLink).prop('href'),
+                success: function(data){
+                    $(`#post-${data.data.post_id}`).remove();
+                },error:function(error){
+                    console.log(error.responseText);
+                }
+            });
+        });
+    }
 
 
     createPost();

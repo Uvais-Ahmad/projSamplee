@@ -7,6 +7,7 @@ module.exports.home = async function(req , res ){
     // Post.find({}).populate..popu..exec(callback and find user inside it and then render it )
     try{
         let posts = await Post.find({})
+        .sort('-createdAt')     //This is used to sort data via timing
         .populate('user')
         .populate({
             path:'comments',
