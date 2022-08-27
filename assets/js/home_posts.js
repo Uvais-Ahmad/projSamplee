@@ -12,6 +12,7 @@
                 //    console.log(data);
                     let newPost = newPostDom(data.data.post);
                     $('.post-container').prepend(newPost);
+                    deletePost($(' .delete-post-button', newPost));
                 }, error: function(error){
                     console.log(error.responseText);
                 }
@@ -22,7 +23,6 @@
     let newPostDom = function(post){
         //here we return While Page of '_post.ejs'
         $('#content').val('');
-
         return(
             `<div class="post" id="post-${post._id}">
                 
@@ -45,7 +45,7 @@
                 </div>
             </div>
             
-                <form action="/comments/create" method="POST" id="comment-form">
+                <form action="/comments/create" method="POST" class="comment-form" id="post-${ post._id }-comments-form">
                     <input type="text" id="content" name="content" placeholder="Add a comment...">
                     <input type="hidden" name="post" value="${post._id}">
                     <input type="submit" value="Post" id="comment-btn">
@@ -53,24 +53,28 @@
         </div>`
         )
     }
-    console.log('This is Main POST',p);
+
+
     //Method to delete a post in DOM
+
     let deletePost = function(deleteLink){
-    
+        
         $(deleteLink).click(function(e){
             e.preventDefault();
-            console.log(deleteLink);
+            console.log('eVENET CALLED FOR DELETELINK ');
             $.ajax({
                 type:'get',
                 url: $(deleteLink).prop('href'),
                 success: function(data){
                     $(`#post-${data.data.post_id}`).remove();
+                    console.log('delete Req Using AJAX : ',data.data);
                 },error:function(error){
                     console.log(error.responseText);
                 }
             });
         });
     }
+
 
 
     createPost();

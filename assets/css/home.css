@@ -62,20 +62,20 @@
       margin: 5px;
       color: grey; }
 
-#comment-form {
+.comment-form {
   display: flex;
   justify-content: space-between; }
-  #comment-form #content {
+  .comment-form #content {
     width: 80%;
     line-height: 1.5rem;
     padding: 5px 8px 5px 15px;
     outline: none;
     border: 0px;
     font-size: 1.2rem; }
-  #comment-form #content::placeholder {
+  .comment-form #content::placeholder {
     font-size: 1.2rem;
     font-weight: 300; }
-  #comment-form #comment-btn {
+  .comment-form #comment-btn {
     outline: none;
     border: 0px;
     background-color: white;

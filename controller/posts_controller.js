@@ -14,8 +14,9 @@ module.exports.create =async function( req , res ){
         //First Check is AJAX requested or Not , xhr means XmlHttpRequest
         // 'data' is an object form response which h
         if(req.xhr){
-            console.log('Yes response from POST controller ');
-
+            // if we want to populate just the name of the user (we'll not want to send the password in the API), this is how we do it!
+            post = await Post.populate('user','name').execPopulate(); 
+            
             return res.status(200).json({
                 //data Object send ajax as response and load inside 'success' function
                 data:{
@@ -50,7 +51,7 @@ module.exports.destroy = async function(req , res){
                     data: {
                         post_id: req.params.id
                     },
-                    message: "Post deleted"
+                    message: "Post deleted success..."
                 });
             } 
 
