@@ -17,7 +17,7 @@ module.exports.create =async function( req , res ){
 
             if(req.xhr){
                 console.log('Yes Called Comment CONTROLLER');
-
+                comment = await comment.populate('user','name').execPopulate();
                 return res.status(200).json({
                     data : {
                         comment : comment
@@ -25,6 +25,8 @@ module.exports.create =async function( req , res ){
                     message : 'Comment Created !'
                 })
             }
+
+            req.flash('success', 'Comment published!');
         
             res.redirect('/');
         }
@@ -46,6 +48,19 @@ module.exports.destroy =async function( req , res ){
             comment.remove();        
         }
     let post = await Post.findByIdAndUpdate( postId , { $pull : { comments : req.params.id}} );
+
+    // send the comment id which was deleted back to the views
+    if (req.xhr){
+        return res.status(200).json({
+            data: {
+                comment_id: req.params.id
+            },
+            message: "Post deleted"
+        });
+    }
+
+    req.flash('success', 'Comment deleted!');
+
     return res.redirect('back');
     }
     catch(err){

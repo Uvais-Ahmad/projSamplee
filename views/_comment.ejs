@@ -1,14 +1,15 @@
-<!-- A comment user can delete own comments ADD delete Sign On Comments -->
-<% if( locals.user && locals.user.id == p.user.id  ) { %> 
-        
-    <small>
-        <a href="/comments/destroy/<%=comment.id %> ">X</a>
-    </small>
-
-<% } %> 
-
 <!-- Showing Comment content and user -->
 <div class="comment">
+
+<!-- A comment user can delete own comments ADD delete Sign On Comments -->
+    <% if( locals.user && locals.user.id == p.user.id  ) { %> 
+            
+        <small>
+            <a href="/comments/destroy/<%=comment.id %> ">X</a>
+        </small>
+
+    <% } %>
+    
     <h4><%= comment.user.name %></h4>
     <p><%= comment.content %></p>
 </div>
