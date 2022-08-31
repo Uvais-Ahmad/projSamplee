@@ -7,7 +7,7 @@
 <% if(user.id == profile_user.id){ %>
     <!-- If SignIn user matches then form show -->
     <!-- Here We add multer to add avatar -->
-    <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+    <form action="/users/update/<%= profile_user.id %>"  enctype="multipart/form-data"  method="POST">
         <input type="text" name="name" placeholder="Your Name..." value="<%= profile_user.name %>" required>
         <input type="email" name="email" placeholder="Your Email..." value="<%= profile_user.email %>" required>
         <input type="file" name="avatar" placeholder="profile Picture">

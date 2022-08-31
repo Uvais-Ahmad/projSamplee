@@ -13,16 +13,47 @@ module.exports.profile = function(req , res){
 }
 
 //This is used to update User information
-module.exports.update = function( req , res ){
+module.exports.update =  async function( req , res ){
     //first Check is Auth
+    // if(req.user.id == req.params.id){
+    //     User.findByIdAndUpdate( req.params.id , req.body , function( err , user){ //{ name:req.body.name, email:req.body.email}
+    //         if( err ){ console.log('Error Occur while updating the user details'); }
+
+    //         req.flash('success','Updated !');
+    //         return res.redirect('back');
+    //     })
+    // }else{
+    //     return res.status(401).send('Unauhorizes');    //200 for success 400 not  find
+    // }
+
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate( req.params.id , req.body , function( err , user){ //{ name:req.body.name, email:req.body.email}
-            if( err ){ console.log('Error Occur while updating the user details'); }
-            req.flash('success','Updated !');
+
+        try{
+
+            let user = await User.findById(req.params.id);
+            //this is used to set information of form 
+            User.uploadedAvatar( req , res , function(err){
+                if(err){console.log('==========Multer_Error : ',err);}
+                
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if(req.file){
+                    //this is saving the path of the uploadedfile into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+            })
+            req.flash('success','Profile Updated!');
+            return res.redirect('/');
+            
+        }catch(err){
+            req.flash('error',err);
             return res.redirect('back');
-        })
+        }
+
     }else{
-        return res.status();    //200 for success 400 not  find
+        req.flash('error','UnAuhorised!');
+        return res.status(401).send('Unauhorized');
     }
 
 }
