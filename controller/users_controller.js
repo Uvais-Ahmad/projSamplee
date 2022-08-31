@@ -1,5 +1,6 @@
 const User = require('../models/users');
-
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req , res){
     //Now profile page shownig only using Id of user
@@ -37,9 +38,16 @@ module.exports.update =  async function( req , res ){
                 
                 //Here We update the info of user 
                 user.name = req.body.name;
-                user.email = req.body.email;
+                user.email = req.body.email; 
 
                 if(req.file){
+
+                    //first Check is any avatar aval for this user
+                    //before delee check first
+                    // if(user.avatar){
+                    //     // fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    // }
+                    
                     //this is saving the path of the uploadedfile into the avatar field in the user
                     //his is path of file
                     user.avatar = User.avatarPath + '/' + req.file.filename;  
