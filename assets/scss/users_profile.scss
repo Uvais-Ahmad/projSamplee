@@ -1,4 +1,46 @@
-div, div>h1{
-    color:#837083;
-    font-weight: bolder;
-} 
+body{
+    background-color: #c5d7f1 ;
+}
+    
+    #profile-container{
+        display: flex;
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        #profile-pic{
+            width: 200px;
+            height: 225px;
+            border: 1px solid darkblue;
+            margin: 20px;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: 20px;
+            input{
+                height: 1.3rem;
+                border-radius: 5px;
+                padding: 5px 10px;
+                background-color: white;
+                margin: 5px 1px;
+            }
+            #file{
+                height: 80px;
+                border: 1px solid lightgrey;
+            }
+            #submit{
+                height: 2rem;
+                background-color: #0d6efd;
+                cursor: pointer;
+                color: white;
+                font-weight: bolder;
+                font-size: 1.1rem;
+            }
+        }
+    }

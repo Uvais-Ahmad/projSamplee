@@ -1,3 +1,36 @@
-div, div > h1 {
-  color: #837083;
-  font-weight: bolder; }
+body {
+  background-color: #c5d7f1; }
+
+#profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #profile-container #profile-pic {
+    width: 200px;
+    height: 225px;
+    border: 1px solid darkblue;
+    margin: 20px; }
+    #profile-container #profile-pic img {
+      height: 100%;
+      width: 100%; }
+  #profile-container form {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 20px; }
+    #profile-container form input {
+      height: 1.3rem;
+      border-radius: 5px;
+      padding: 5px 10px;
+      background-color: white;
+      margin: 5px 1px; }
+    #profile-container form #file {
+      height: 80px;
+      border: 1px solid lightgrey; }
+    #profile-container form #submit {
+      height: 2rem;
+      background-color: #0d6efd;
+      cursor: pointer;
+      color: white;
+      font-weight: bolder;
+      font-size: 1.1rem; }

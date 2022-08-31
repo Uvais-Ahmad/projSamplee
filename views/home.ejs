@@ -3,10 +3,11 @@
 <section id="feed-posts">
     
     <!-- Apply condition Only Auth user can post -->
-    <h3>Posts</h3>
+    
     <% if(locals.user){ %> 
+        <h3>Posts</h3>
         <form action="/posts/create" id="new-post-form" method="POST">
-            <textarea id="content" name="content" cols="43" rows="4" placeholder="write post here..."></textarea><br>
+            <textarea id="content" name="content" cols="40" rows="6" placeholder="write post here..."></textarea><br>
             <input type="submit" value="Post" id="post-btn">
         </form>
     <% } %> 
