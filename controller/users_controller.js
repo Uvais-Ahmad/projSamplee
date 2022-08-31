@@ -42,13 +42,13 @@ module.exports.update =  async function( req , res ){
                 if(req.file){
                     //this is saving the path of the uploadedfile into the avatar field in the user
                     //his is path of file
-                    user.avatar = User.avatarPath + '/' + req.file.filename;
-                    
+                    user.avatar = User.avatarPath + '/' + req.file.filename;  
                 }
                 //Now save all details of current details
                 user.save();
+                req.flash('success','Profile Updated!');
             })
-            req.flash('success','Profile Updated!');
+            
             return res.redirect('/');
             
         }catch(err){
@@ -124,10 +124,10 @@ module.exports.createSession = function(req , res){
 
 //This action used to deestroy the session
 module.exports.destroySession = function( req , res ){
-    req.flash('success','You have logged out!');
     //This function tell the passportJs to delete session
     req.logout(function(err){
         if(err){ console.log(`Error Occur while Logout the session ${err}`); return next(err);}
+        req.flash('success','You have logged out!');
         return res.redirect('/');
     });
 }
