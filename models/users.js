@@ -17,10 +17,11 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    // Used for AVATAR
-    avatar : {
+    avatar : {        // Used for AVATAR
         type :String
     }
+},{
+  timestamps : true
 });
 
 const storage = multer.diskStorage({
@@ -33,8 +34,9 @@ const storage = multer.diskStorage({
     }
   });
 
+
   //Make static methods
-  userSchema.statics.uploadedAvatar =  multer({ storage: storage }).single('avatar');
+  userSchema.statics.uploadedAvatar =  multer({ storage:storage }).single('avatar');
   //WE WRITE HERE becoz we can use it publicly
   userSchema.statics.avatarPath = AVATAR_PATH;
 

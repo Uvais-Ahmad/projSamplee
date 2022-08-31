@@ -35,13 +35,18 @@ module.exports.update =  async function( req , res ){
             User.uploadedAvatar( req , res , function(err){
                 if(err){console.log('==========Multer_Error : ',err);}
                 
+                //Here We update the info of user 
                 user.name = req.body.name;
                 user.email = req.body.email;
 
                 if(req.file){
                     //this is saving the path of the uploadedfile into the avatar field in the user
+                    //his is path of file
                     user.avatar = User.avatarPath + '/' + req.file.filename;
+                    
                 }
+                //Now save all details of current details
+                user.save();
             })
             req.flash('success','Profile Updated!');
             return res.redirect('/');

@@ -43,6 +43,9 @@ app.use(cookieParser());
 //for accessing the static files such as css/js
 app.use(express.static('assets'));
 
+//makes uploads path available for the browser
+app.use('/uploads' , express.static(__dirname + '/uploads'));
+
 //This middleware used to launch the Layout System
 app.use(ExpressLayout);
 
