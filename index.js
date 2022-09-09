@@ -12,6 +12,7 @@ const db = require('./config/mongoose');
 //for passport Session setup
 const session = require('express-session');
 const passport = require('passport');
+const passportJWT = require('./config/passport-jwt-strategy');
 const passportLocal = require('./config/passport-local-strategy');
 
 //MongoStore for session storing
