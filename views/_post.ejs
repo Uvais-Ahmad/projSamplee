@@ -1,4 +1,4 @@
-<div class="post" id="post-<%= p._id %> ">
+<div class="post" id="post-<%= p._id %>">
     <!-- this deletion Shows Only when the user logged In and oNLY valid for users own post -->
     <!-- Deleting Post sectiom -->
     <% if( locals.user && p.user.id == locals.user.id ) { %> 
