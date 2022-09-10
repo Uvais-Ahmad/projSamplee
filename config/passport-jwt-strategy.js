@@ -5,14 +5,15 @@ const ExtractJWT = require ('passport-jwt').ExtractJwt;
 const User = require('../models/users')
 
 const opts = {
-    jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken ,
+    //here we decrypt the key
+    jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken() ,
     secretOrKey : 'codeial'
 }
 
 // new JwtStrategy(opts , verify);
 //opts is an object define how our token is extracted
 
-passport.use(new JwtStrategy(opts , function( jwtPayload , done){
+passport.use(new JWTStrategy(opts , function( jwtPayload , done){
     //now find the user
     User.findById(jwtPayload._id ,  function(user , err){
         if(err){ console.log('Error in finding the user : ',err); return;}
