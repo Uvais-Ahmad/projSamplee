@@ -3,7 +3,7 @@ const googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const crypto = require('crypto');
 const User = require('../models/users');
 
-//Add middleware 
+//Add middleware , tell passport to use a new Strategy  for google logIn
 passport.use(new googleStrategy({
         clientID :"158660693437-a9498qqa9ogjna45kko0k7k8iv3go4gp.apps.googleusercontent.com" ,
         clientSecret : "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",
@@ -16,10 +16,13 @@ passport.use(new googleStrategy({
         .exec(function(err , user){
 
             if(err){ console.log(`Error in google strategy passport ${err}`)}
+            console.log('=================================PPPPPPPPP===========================');
             console.log(profile);
 
             //if user Exists
             if(user){
+                console.log('=================================MIL GAYA MIL GAYA MIL GAYA===========================');
+                console.log('User ===== ',user);
                 return done(null , user);
             }
             //if not exist lets sign Up the user
@@ -34,6 +37,7 @@ passport.use(new googleStrategy({
 
                 })
             }
+            console.log('End of  findOne Exec');
         })
     }
 

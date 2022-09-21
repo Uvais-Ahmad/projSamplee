@@ -14,6 +14,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportLocal = require('./config/passport-local-strategy');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
 //MongoStore for session storing
 const MongoStore = require('connect-mongo');
@@ -24,7 +25,6 @@ const sassMiddleware = require('node-sass-middleware');
 //Flash messages module
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
-
 
 //this is must be used just before server started
 app.use(sassMiddleware({

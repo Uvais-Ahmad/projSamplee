@@ -126,6 +126,7 @@ module.exports.create = function(req , res ){
 //Get the signIn data and create sessioncooki for the user
 module.exports.createSession = function(req , res){
     //we set it in req body
+    console.log('Created Session is called ');
     req.flash('success','Logged In successfully');
     return res.redirect('/');
 }

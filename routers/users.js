@@ -31,5 +31,12 @@ router.post('/create-session', passport.authenticate(
 //to clear all the data of the session 
 router.get('/sign-out',userController.destroySession);
 
+//Google Strategy
+router.get('/auth/google', passport.authenticate('google' , { scope :['profile' , 'email']}));
+
+//callbackURL
+router.get('/auth/google/callback' , passport.authenticate('google' ,{failureRedirect : '/users/sign-in'}) , userController.createSession );
+
+
 module.exports = router;
 
