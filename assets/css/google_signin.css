@@ -1,0 +1,30 @@
+#divider {
+  display: flex;
+  margin-bottom: 8px; }
+  #divider hr {
+    margin-top: 20px;
+    width: 48%;
+    height: 0.5px; }
+  #divider span {
+    margin: 10px 5px 1px;
+    color: grey;
+    font-weight: bolder; }
+
+#google-cont {
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  width: 240px;
+  height: 30px;
+  display: flex;
+  padding: 5px 5px;
+  box-shadow: 1px 1px 5px 1px lightgrey;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 32%; }
+  #google-cont img {
+    height: 30px;
+    width: 30px; }
+  #google-cont p {
+    margin: 4px 5px;
+    font-size: 1.2rem;
+    color: grey; }
