@@ -1,20 +1,28 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
 
 module.exports.create =async function( req , res ){
     //first Find is there Any post on which comment post
     //post is the hidden input Value sent by form
     try{
         let post =await Post.findById(req.body.post );
+        let comment;
         if(post){
-            let comment =await Comment.create({
+                comment =await Comment.create({
                 content : req.body.content,
                 post : req.body.post,
                 user : req.user._id
             });
             post.comments.push(comment);
             post.save();
-
+            //populate the user and send user which is current post
+            await Comment.findOne({content : req.body.content })
+            .populate('user','email')
+            .exec((err , comnt )=>{
+                commentsMailer.newComment(comnt);
+            });
+            
             if(req.xhr){
                 console.log('Yes Called Comment CONTROLLER');
                 comment = await comment.populate('user','name').execPopulate();

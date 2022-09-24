@@ -5,17 +5,18 @@ const nodemailer = require('nodemailer');
 
 //Connect transporter with nodemailer Obj and Here set Some values
 //this is part how msg communicates
+
 let transporter = nodemailer.createTransport({
-    service : 'gmail',
-    host : 'smtp.gmail.com',
+    
+    host : 'smtp.ethereal.email',
     port : 587,
     secure : false,
     auth : {
-        user : 'uvss21@gmail.com',
-        pass : 'uvaiszm5'
+        user : 'golda.hartmann@ethereal.email',
+        pass : 'RedwBxJnu8559x2ceF'
     }
 
-})
+});
 
 let renderTemplate = (data , relativePath ) => {
     let mailHTML;
