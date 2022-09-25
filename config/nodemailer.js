@@ -10,7 +10,7 @@ let transporter = nodemailer.createTransport({
     
     host : 'smtp.ethereal.email',
     port : 587,
-    secure : false,
+    secure : true,
     auth : {
         user : 'golda.hartmann@ethereal.email',
         pass : 'RedwBxJnu8559x2ceF'
@@ -26,7 +26,7 @@ let renderTemplate = (data , relativePath ) => {
         path.join(__dirname , '../views/mailers' , relativePath),
         data,
         function(err , template){
-            if(err){console.log('Error in rendering template '); return}
+            if(err){console.log('Error in rendering template ',err); return}
             mailHTML = template;
         }
     )
