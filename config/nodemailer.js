@@ -10,7 +10,7 @@ let transporter = nodemailer.createTransport({
     
     host : 'smtp.ethereal.email',
     port : 587,
-    secure : true,
+    secure : false,
     auth : {
         user : 'golda.hartmann@ethereal.email',
         pass : 'RedwBxJnu8559x2ceF'

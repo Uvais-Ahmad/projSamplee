@@ -17,11 +17,12 @@ module.exports.create =async function( req , res ){
             post.comments.push(comment);
             post.save();
             //populate the user and send user which is current post
-            await Comment.findOne({content : req.body.content })
+            let cmn = await Comment.findOne({content : req.body.content })
             .populate('user','email')
             .exec((err , comnt )=>{
                 commentsMailer.newComment(comnt);
             });
+            
             
             if(req.xhr){
                 console.log('Yes Called Comment CONTROLLER');
