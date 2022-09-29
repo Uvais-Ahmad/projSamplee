@@ -1,6 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 
 module.exports.create =async function( req , res ){
     //first Find is there Any post on which comment post
@@ -17,10 +19,17 @@ module.exports.create =async function( req , res ){
             post.comments.push(comment);
             post.save();
             //populate the user and send user which is current post
-            let cmn = await Comment.findOne({content : req.body.content })
+            await Comment.findOne({content : req.body.content })
             .populate('user','email')
-            .exec((err , comnt )=>{
-                commentsMailer.newComment(comnt);
+            .exec((err , comment )=>{
+                // commentsMailer.newComment(comment);
+                let job = queue.create('emails',comment).save((err)=>{
+                    if(err){
+                        console.log('There is an error while saving jOb : ',err);
+                        return;
+                    }
+                    console.log("This is Job id : ",job.id);
+                })
             });
             
             

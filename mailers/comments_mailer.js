@@ -1,6 +1,7 @@
 //add config file of nodemailer
 const nodemailer = require('../config/nodemailer');
 
+
 // this is another ways for exporting the method
 exports.newComment = (comment) => {
   
@@ -9,6 +10,7 @@ exports.newComment = (comment) => {
 
     //This is avail in docs also
     //Node set values of sendMail function
+    console.log(' i am in comment _ mailers ========');
     nodemailer.transporter.sendMail({
         from : 'uvss21@gmail.com',
         to : 'uvru05@gmail.com',
