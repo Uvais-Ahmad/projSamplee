@@ -11,22 +11,23 @@ module.exports.create =async function( req , res ){
             user:req.user._id       //here auto callled setAuth function 
         })
 
-        //First Check is AJAX requested or Not , xhr means XmlHttpRequest
-        // 'data' is an object form response which h
+        //if  $.ajax({})  req is applied then here "req.xhr" will be true
         if(req.xhr){
             // if we want to populate just the name of the user (we'll not want to send the password in the API), this is how we do it!
-            post = await Post.populate('user','name').execPopulate(); 
-            
-            return res.status(200).json({
-                //data Object send ajax as response and load inside 'success' function
-                data:{
-                    post : post
-                },
-                message:"Post Created"
-            });
+            await Post.findById(post._id).populate('user','name').exec((err,post)=>{
+                return res.status(200).json({
+                    //data Object send ajax as response and load inside 'success' function
+                    data:{
+                        post : post
+                    },
+                    message:"Post Created"
+                });
+
+            })
         }
-        req.flash('success','Post Published !');
-        return res.redirect('back');
+        //its execute bcoz its async so it will be exe 
+        //its remove here bcoz we Setup NOTY in assests js
+        // req.flash('success','Post Published Now !');
     }
     catch(err){
         req.flash('error',err); return;

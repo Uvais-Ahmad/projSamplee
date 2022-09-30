@@ -8,7 +8,7 @@ module.exports.create =async function( req , res ){
     //first Find is there Any post on which comment post
     //post is the hidden input Value sent by form
     try{
-        let post =await Post.findById(req.body.post );
+        let post = await Post.findById(req.body.post );
         let comment;
         if(post){
                 comment =await Comment.create({
@@ -32,16 +32,18 @@ module.exports.create =async function( req , res ){
                 })
             });
             
-            
+            console.log('This is comment req.xhr : ',req.xhr);
             if(req.xhr){
-                console.log('Yes Called Comment CONTROLLER');
-                comment = await comment.populate('user','name').execPopulate();
-                return res.status(200).json({
-                    data : {
-                        comment : comment
-                    },
-                    message : 'Comment Created !'
-                })
+                await comment
+                    .populate('user','name')
+                    .exec(( err , comment)=>{
+                        return res.status(200).json({
+                            data : {
+                                comment : comment
+                            },
+                            message : 'Comment Created !'
+                        })
+                    });
             }
 
             req.flash('success', 'Comment published!');
