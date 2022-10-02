@@ -146,3 +146,24 @@ module.exports.forgotPassword = function( req , res ){
         title:'Forgot Password'
     });
 }
+
+module.exports.resetPassword = async function( req , res ){
+    try{
+        console.log("req.body :::::::::: ",req.body)
+        let user = await User.findOne({email : req.body.email})
+        console.log("TThis is User here in reset password",user)
+        if(!user){
+            console.log("User not found : ",user);
+            return res.redirect('/users/forgot-password');
+        }
+        else{
+            return res.render('reset_password',{
+                title : 'Reset Password'
+            });
+        }
+        
+    }catch(err){
+        console.log('This error occur while rendering forgot password page',err)
+        return res.redirect('back');
+    }
+}
