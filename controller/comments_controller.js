@@ -9,6 +9,8 @@ module.exports.create =async function( req , res ){
     //post is the hidden input Value sent by form
     try{
         let post = await Post.findById(req.body.post );
+
+        console.log("Yes Comment Controller called");
         let comment;
         if(post){
                 comment =await Comment.create({
@@ -18,10 +20,12 @@ module.exports.create =async function( req , res ){
             });
             post.comments.push(comment);
             post.save();
+
             //populate the user and send user which is current post
             await Comment.findOne({content : req.body.content })
-            .populate('user','email')
+            .populate('user',' name email')
             .exec((err , comment )=>{
+                console.log("Comment is created : ",comment)
                 // commentsMailer.newComment(comment);
                 let job = queue.create('emails',comment).save((err)=>{
                     if(err){
@@ -30,29 +34,37 @@ module.exports.create =async function( req , res ){
                     }
                     console.log("This is Job id : ",job.id);
                 })
+
+                console.log('This is comment req.xhr : ',req.xhr);
+                
+                if(req.xhr){
+                    return res.status(200).json({
+                        data : {
+                            comment : comment
+                        },
+                        message : 'Comment Created !'
+                    })
+                }
             });
             
-            console.log('This is comment req.xhr : ',req.xhr);
-            if(req.xhr){
-                await comment
-                    .populate('user','name')
-                    .exec(( err , comment)=>{
-                        return res.status(200).json({
-                            data : {
-                                comment : comment
-                            },
-                            message : 'Comment Created !'
-                        })
-                    });
-            }
+            // console.log('This is comment req.xhr : ',req.xhr);
+            // if(req.xhr){
+            //     return res.status(200).json({
+            //         data : {
+            //             comment : comment
+            //         },
+            //         message : 'Comment Created !'
+            //     })
+            // }
 
-            req.flash('success', 'Comment published!');
+            req.flash('success', 'Comment published here!');
         
             res.redirect('/');
         }
     }
     catch(err){
         console.log('Error : ',err);
+        return;
     } 
 }
 

@@ -21,6 +21,10 @@ body {
   padding: 50px;
   border-radius: 20px;
   background-color: white; }
+  .signIn .forgotPass, form .forgotPass {
+    text-decoration: none;
+    margin-left: 21%;
+    margin-top: 2px; }
 
 input {
   width: 60%;

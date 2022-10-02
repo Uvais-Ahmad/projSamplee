@@ -26,7 +26,7 @@ class PostComments{
         this.newCommentForm.submit(function(e){
             e.preventDefault();
             let self = this;
-
+            console.log("_________Submit called to create comment ")
             $.ajax({
                 type: 'post',
                 url: '/comments/create',
@@ -49,8 +49,6 @@ class PostComments{
                     console.log(error.responseText);
                 }
             });
-
-
         });
     }
 
