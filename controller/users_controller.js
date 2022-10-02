@@ -1,6 +1,8 @@
 const User = require('../models/users');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+const ResetToken = require('../models/reset_pass_token');
 
 module.exports.profile = function(req , res){
     //Now profile page shownig only using Id of user
@@ -141,22 +143,36 @@ module.exports.destroySession = function( req , res ){
     });
 }
 
+//This is used to render the page for checking email to reset password
 module.exports.forgotPassword = function( req , res ){
+
+
     return res.render('forgot_password',{
-        title:'Forgot Password'
+        title:'Forgot Password',
+        //sending AccessToken if email Auth then render SetPass page Otherwise null
+        accessToken : crypto.randomBytes(20).toString('hex')
     });
 }
 
+//This is used to show resetPass page if user authen success
 module.exports.resetPassword = async function( req , res ){
     try{
-        console.log("req.body :::::::::: ",req.body)
         let user = await User.findOne({email : req.body.email})
-        console.log("TThis is User here in reset password",user)
         if(!user){
-            console.log("User not found : ",user);
             return res.redirect('/users/forgot-password');
         }
         else{
+            // let Token = crypto.randomBytes(20).toString('hex')
+            let token = req.params.accessToken;
+            console.log("req.params : ",token)
+            let rToken = await ResetToken.create({
+                accessToken : token,
+                isValid : true
+            });
+            console.log("This is resetToken Object : ",rToken)
+            //if user meet then set vslue of resetPaswordToken
+
+            //Instead of render this page from here we render it by email  from here we send an email
             return res.render('reset_password',{
                 title : 'Reset Password'
             });
