@@ -141,8 +141,8 @@ module.exports.destroySession = function( req , res ){
     });
 }
 
-module.exports.resetPassword = function( req , res ){
-    return res.render('reset_password',{
-        title:'Reset Password'
+module.exports.forgotPassword = function( req , res ){
+    return res.render('forgot_password',{
+        title:'Forgot Password'
     });
 }
