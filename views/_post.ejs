@@ -19,7 +19,7 @@
 
     <!-- Comments list Showing Section -->
     <div id="comment-container">
-        <h1 id="tag">Comments :</h1>
+        <h3 id="tag">Comments :</h3>
         <div class="post-comments-list" id="post-comments-<%= p._id %>">
             <% for(comment of p.comments){ %>
                 <%- include('_comment',{comment:comment}) %> 
@@ -36,5 +36,15 @@
             <input type="submit" value="Post" id="comment-btn">
         </form>
     <% } %>
+
+    <small>
+        <% if (locals.user){ %>
+            <a class="toggle-like-button" data-likes="<%= p.likes.length %>" href="/likes/toggle/?id=<%=p._id%>&type=Post">
+                    <%= p.likes.length %> Likes
+            </a>
+        <% }else{ %>
+            <%= p.likes.length %> Likes
+        <% } %>
+    </small>
 </div>
 

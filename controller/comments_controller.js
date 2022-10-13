@@ -3,6 +3,7 @@ const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
 const queue = require('../config/kue');
 const commentEmailWorker = require('../workers/comment_email_worker');
+const Like = require('../models/like')
 
 module.exports.create =async function( req , res ){
     //first Find is there Any post on which comment post
@@ -14,7 +15,7 @@ module.exports.create =async function( req , res ){
         let comment;
         if(post){
                 comment =await Comment.create({
-                content : req.body.content,
+                content : req.body.content, 
                 post : req.body.post,
                 user : req.user._id
             });
@@ -37,7 +38,7 @@ module.exports.create =async function( req , res ){
 
                 console.log('This is comment req.xhr : ',req.xhr);
                 
-                if(req.xhr){
+                if(req.xhr){    
                     return res.status(200).json({
                         data : {
                             comment : comment
@@ -71,15 +72,18 @@ module.exports.create =async function( req , res ){
 // used to delete the particula comment
 module.exports.destroy =async function( req , res ){
     //First Check comment is Exist
+    let postId;
     try{
         let comment = await Comment.findById( req.params.id ); 
         if( comment.user == req.user.id ){
             //Comment present on this post
-            let postId = comment.post;
+            postId = comment.post;
             //Now remove the comment
             comment.remove();        
         }
     let post = await Post.findByIdAndUpdate( postId , { $pull : { comments : req.params.id}} );
+    // CHANGE :: destroy the associated likes for this comment
+    await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
 
     // send the comment id which was deleted back to the views
     if (req.xhr){

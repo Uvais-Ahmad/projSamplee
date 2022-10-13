@@ -16,6 +16,7 @@ router.use('/users' , require('./users'));
 //Router connnected with post id any request comes with post
 router.use('/posts',require('./posts'));
 router.use('/comments',require('./comments'));
+router.use('/likes',require('./likes'));
 
 //for the api routes
 router.use('/api',require('./api'));

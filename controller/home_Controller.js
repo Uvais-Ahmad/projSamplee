@@ -5,17 +5,22 @@ const User = require('../models/users');
 module.exports.home = async function(req , res ){
     //to find all details about refrenced user  Use POPULATE() func
     // Post.find({}).populate..popu..exec(callback and find user inside it and then render it )
+
+    // CHANGE :: populate the likes of each post and comment
     try{
         let posts = await Post.find({})
         .sort('-createdAt')     //This is used to sort data via timing
         .populate('user')
         .populate({
             path:'comments',
-            populate:{ path:'user'}
-        })
+            populate:{ path:'user'},
+            populate:{ path:'likes'}
+        }).populate('comments')
+        .populate('likes');
+
         let users = await User.find({});
     
-        return res.render('home' , {
+          return res.render('home' , {
             title : 'HomePage',
             posts:posts ,
             all_users : users

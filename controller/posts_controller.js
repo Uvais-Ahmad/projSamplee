@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const Like = require('../models/like');
 
 module.exports.create =async function( req , res ){
 
@@ -10,6 +11,8 @@ module.exports.create =async function( req , res ){
             content : req.body.content,
             user:req.user._id       //here auto callled setAuth function 
         })
+        // let p =  await Post.findById(post._id).populate('user');
+        // console.log('This is ppolste of user : ',p )
 
         //if  $.ajax({})  req is applied then here "req.xhr" will be true
         if(req.xhr){
@@ -22,8 +25,8 @@ module.exports.create =async function( req , res ){
                     },
                     message:"Post Created"
                 });
-
             })
+            
         }
         //its execute bcoz its async so it will be exe 
         //its remove here bcoz we Setup NOTY in assests js
@@ -44,6 +47,12 @@ module.exports.destroy = async function(req , res){
 
             //.id means to conver _id into string
         if( post.user == req.user.id ){
+
+            // CHANGE :: delete the associated likes for the post and all its comments' likes too
+            await Like.deleteMany({likeable: post, onModel: 'Post'});
+            await Like.deleteMany({_id: {$in: post.comments}});
+
+
             post.remove();
             await Comment.deleteMany({ post : req.params.id})
 
