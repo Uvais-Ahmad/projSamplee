@@ -1,0 +1,19 @@
+<!-- CHANGE :: create the code for chat box -->
+<% if(locals.user){ %>
+    <div id="user-chat-box">
+		<ul id="chat-messages-list">
+			<li class="other-messages msg">
+				<span>Other</span>
+			</li>
+
+			<li class="self-messages msg">
+				<span>Self </span>
+			</li>
+		</ul>
+
+		<div id="chat-message-input-container">
+			<input id="chat-message-input" type="" name="" placeholder="Send message...">
+			<button id="send-message">Send</button>
+		</div>
+	</div>
+<% } %> 
