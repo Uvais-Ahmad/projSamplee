@@ -45,3 +45,10 @@
 <script src="/js/home_posts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" ></script>
 <script src="/js/chat_engine.js" ></script>
+<!-- Initialise the class of JS assets -->
+<% if(locals.user){ %> 
+<script>
+    new chatEngine('user-chat-box', '<%= locals.user.email %>');
+</script>
+
+<% } %> 

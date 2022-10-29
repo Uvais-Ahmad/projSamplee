@@ -26,6 +26,14 @@ const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
+// Socket.io
+const chatServer = require('http').createServer(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(3000, ()=>{
+    console.log("chat server is listning on 5000");
+});
+
+
 //this is must be used just before server started
 app.use(sassMiddleware({
     src:"./assets/scss",
