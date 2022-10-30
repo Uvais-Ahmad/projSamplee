@@ -48,7 +48,7 @@
 <!-- Initialise the class of JS assets -->
 <% if(locals.user){ %> 
 <script>
-    new chatEngine('user-chat-box', '<%= locals.user.email %>');
+    new chatEngine('user-chat-box', '<%= locals.user.email %>' , '<%= locals.user.name %>');
 </script>
 
 <% } %> 
